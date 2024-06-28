@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+</head>
+<body>
+    <div>Name: {{.name}}</div>
+    <div>Age: {{.age}}</div>
+    {{if .items}}
+    <ul>
+        {{range $item := .items}}
+        <li>{{$item.title}}</li>
+        {{end}}
+    </ul>
+    {{end}}
+    <div>{{showHtml .html}}</div>
+</body>
+</html>
