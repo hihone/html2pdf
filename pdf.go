@@ -1,9 +1,8 @@
-package pdfGenerator
+package html2pdf
 
 import (
 	"bytes"
 	"fmt"
-	wkPdf "github.com/hihone/go-wkhtmltopdf"
 	werrors "github.com/pkg/errors"
 	"html/template"
 	"os"
@@ -84,13 +83,13 @@ func (r *RequestPDF) ParseTemplateFile(tplFile string, data map[string]any) erro
 }
 
 func (r *RequestPDF) Build() (bool, error) {
-	pdf, err := wkPdf.NewPDFGenerator()
+	pdf, err := newPDFGenerator()
 	if err != nil {
 		return false, werrors.WithStack(err)
 	}
 	switch r.tplType {
 	case tplTypeParseTplContent, tplTypeParseTplFile:
-		pdf.AddPage(wkPdf.NewPageReader(strings.NewReader(r.html)))
+		pdf.AddPage(NewPageReader(strings.NewReader(r.html)))
 	}
 
 	if err := pdf.Create(); err != nil {

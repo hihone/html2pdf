@@ -1,4 +1,4 @@
-package pdfGenerator
+package html2pdf
 
 import (
 	"fmt"
@@ -59,7 +59,7 @@ func TestParseHtml(t *testing.T) {
 }
 func TestParseHtmlFile(t *testing.T) {
 	r := NewRequestPDF("b.pdf")
-	err := r.ParseTemplateFile("../tpl/tpl.html", map[string]any{
+	err := r.ParseTemplateFile("./tpl/tpl.html", map[string]any{
 		"name":  "YYang",
 		"age":   30,
 		"title": "模板测试",
